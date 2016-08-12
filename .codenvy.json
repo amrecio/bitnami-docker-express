@@ -14,8 +14,8 @@
               "ram": 1000
             },
             "source": {
-              "type": "dockerfile",
-              "location": "https://raw.githubusercontent.com/amrecio/bitnami-docker-express/master/.codenvy.dockerfile"
+              "type": "image",
+              "location": "arecio/che-express"
             },
             "type": "docker",
             "dev": true
@@ -32,30 +32,36 @@
           "type": "git",
           "location": "https://github.com/amrecio/bitnami-docker-express",
           "parameters": {
-            "keepVcs": "false"
+            "branch": "che",
+            "keepVcs": "true"
           }
         },
         "mixins": [
-          "git"
+          "git",
+          "pullrequest"
         ],
+        "attributes": {
+          "local_branch": [ "che" ],
+          "contribute_to_branch" : [ "master" ]
+        },
         "modules": [],
         "problems": []
       }
     ],
     "commands": [
       {
-        "name": "create sample project",
-        "type": "custom",
-        "commandLine": "cd ${current.project.path} && npm install express@4.13.4 && express -f . && npm install",
-        "attributes": {}
-      },
-      {
-        "name": "start",
+        "name": "run",
         "type": "custom",
         "commandLine": "cd ${current.project.path} && npm start",
         "attributes": {
           "previewUrl": "http://${server.port.3000}/"
         }
+      },
+      {
+        "name": "create sample project",
+        "type": "custom",
+        "commandLine": "cd ${current.project.path} && npm install express@4.13.4 && express -f . && cp -rn /bitnami/mongodb/conf ${current.project.path} && npm install mongodb@2.1.18 --save && npm install && counter=0; until nc -z localhost 27017; do counter=$((counter+1)); if [ $counter == 10 ]; then echo \"Error: Couldn't connect to MongoDB.\"; exit 1; fi; echo \"Trying to connect to MongoDB at localhost. Attempt $counter.\"; sleep 5; done; echo \"Connected to MongoDB database\" && echo -e \"\n\n\n\n* Welcome to the Bitnami development container for Express *\n\nA sample project has been created just for you, ready to be run.\nFor more information, please refer to README.md.\n\n\n\nYou may close this window.\"",
+        "attributes": {}
       }
     ]
   },
@@ -63,10 +69,10 @@
     "onProjectsLoaded": {
       "actions": [
         {
+          "id": "runCommand",
           "properties": {
             "name": "create sample project"
-          },
-          "id": "runCommand"
+          }
         }
       ]
     }

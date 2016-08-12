@@ -1,7 +1,7 @@
 # Eclipse Che Developer Workspace
 Click to get an Eclipse Che on-demand workspace with a sample project ready to start developing.
 
-[![Contribute](http://beta.codenvy.com/factory/resources/codenvy-contribute.svg)](https://beta.codenvy.com/f/?url=https%3A%2F%2Fgithub.com%2Famrecio%2Fbitnami-docker-express)
+[![Contribute](http://beta.codenvy.com/factory/resources/codenvy-contribute.svg)](https://beta.codenvy.com/f/?url=https%3A%2F%2Fgithub.com%2Famrecio%2Fbitnami-docker-express%2Ftree%2Fche)
 
 # Express Application Development using Bitnami Docker Images
 
