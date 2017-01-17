@@ -5,7 +5,7 @@
       "default": {
         "recipe": {
           "type": "compose",
-          "content": "services:\n  dev-machine:\n  image: arecio/express-unify\n  command: npm start && tail -f /dev/null",
+          "content": "services:\n dev-machine:\n  image: arecio/express-unify\n",
           "contentType": "application/x-yaml"
         },
         "machines": {
