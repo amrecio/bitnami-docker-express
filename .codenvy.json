@@ -14,10 +14,18 @@
             "attributes": {
               "memoryLimitBytes": "2147483648"
             }
+          },
+          "mongodb": {
+            "agents": [
+              "org.eclipse.che.terminal",
+              "org.eclipse.che.ssh"
+            ],
+            "servers": {},
+            "attributes": {}
           }
         },
         "recipe": {
-          "content": "services:\n dev-machine:\n  image: arecio/express-unify\n  command: /app-entrypoint.sh nami start --foreground express\n",
+          "content": "services:\n dev-machine:\n  image: arecio/express-unify\n  command: /app-entrypoint.sh tail -f /dev/null\n mongodb:\n  image: 'bitnami/mongodb:latest'\n  mem_limit: 1073741824\n",
           "contentType": "application/x-yaml",
           "type": "compose"
         }
