@@ -17,7 +17,7 @@
           }
         },
         "recipe": {
-          "content": "services:\n dev-machine:\n  image: arecio/express-unify\n",
+          "content": "services:\n dev-machine:\n  image: arecio/express-unify\n  command: npm start && tail -f /dev/null",
           "contentType": "application/x-yaml",
           "type": "compose"
         }
