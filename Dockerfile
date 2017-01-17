@@ -2,7 +2,7 @@ FROM gcr.io/stacksmith-images/minideb:jessie-r8
 
 MAINTAINER Bitnami <containers@bitnami.com>
 
-ENV BITNAMI_APP_NAME=express \
+ENV BITNAMI_APP_NAME=express-unify \
     BITNAMI_IMAGE_VERSION=4.14.0 \
     PATH=/opt/bitnami/node/bin:$PATH
 
@@ -20,7 +20,7 @@ RUN npm install -g bower@1.8.0 sequelize-cli
 RUN bitnami-pkg unpack express-4.14.0-2 --checksum bcf8c9ea99839527de9ac954f40eb8ffba2ceea72fccb9e9db9386ceb21f87a4
 
 # ExpressJS template
-ENV BITNAMI_APP_NAME=express
+ENV BITNAMI_APP_NAME=express-unify
 ENV BITNAMI_IMAGE_VERSION=4.14.0-r17
 
 COPY rootfs /
