@@ -4,6 +4,19 @@ set -e
 INIT_SEM=/tmp/initialized.sem
 PACKAGE_FILE=/app/package.json
 
+function initialize {
+    # Package can be "installed" or "unpacked"
+    status=`nami inspect $1`
+    if [[ "$status" == *'"lifecycle": "unpacked"'* ]]; then
+        # Clean up inputs
+        inputs=""
+        if [[ -f /$1-inputs.json ]]; then
+            inputs=--inputs-file=/$1-inputs.json
+        fi
+        nami initialize $1 $inputs
+    fi
+}
+
 fresh_container() {
   [ ! -f $INIT_SEM ]
 }
@@ -118,7 +131,8 @@ log () {
   echo -e "\033[0;33m$(date "+%H:%M:%S")\033[0;37m ==> $1."
 }
 
-if [ "$1" == npm ] && [ "$2" == "start" -o "$2" == "run" ]; then
+if [ "$1" == "nami" ] && [ "$2" == "start" -o "$2" == "run" ]; then
+  initialize express
   wait_for_db
 
   if ! app_present; then

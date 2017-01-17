@@ -17,7 +17,7 @@ $ docker-compose up
 
 Launch a on-demand Express development workspace in Eclipse Che by clicking the link below:
 
-[![Express Development Workspace](http://beta.codenvy.com/factory/resources/codenvy-contribute.svg)](https://beta.codenvy.com/f/?url=https%3A%2F%2Fgithub.com%2Fbitnami%2Fbitnami-docker-express%2Ftree%2Fche)
+[![Express Development Workspace](http://beta.codenvy.com/factory/resources/codenvy-contribute.svg)](https://beta.codenvy.com/f/?url=https%3A%2F%2Fgithub.com%2Farecio%2Fbitnami-docker-express)
 
 You can find the configuration files used on the previous link in the [Che branch](https://github.com/bitnami/bitnami-docker-express/tree/che). For more information about Eclipse Che workspaces check the [official documentation](https://eclipse-che.readme.io/docs/introduction).
 
