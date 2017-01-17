@@ -17,7 +17,7 @@
           }
         },
         "recipe": {
-          "content": "services:\n dev-machine:\n  image: bitnami\express\n",
+          "content": "services:\n dev-machine:\n  image: bitnami/express\n",
           "contentType": "application/x-yaml",
           "type": "compose"
         }
