@@ -74,7 +74,8 @@
       {
         "name": "1. Create and run project",
         "type": "custom",
-        "commandLine": "print-help && cd ${current.project.path} && sudo HOME=/root nami initialize express; cp -r /dist/samples . && sudo HOME=/root nami execute express generateProject --projectDir /projects --force $(basename ${current.project.path}) && npm install mongodb@2.1.18 --save && npm install && counter=0; until nc -z mongodb 27017; do counter=$((counter+1)); if [ $counter == 10 ]; then echo \"Error: Couldn't connect to MongoDB.\"; exit 1; fi; echo \"Trying to connect to MongoDB at mongodb. Attempt $counter.\"; sleep 5; done; echo \"Connected to MongoDB database. Starting application server.\" && npm start",
+        "commandLine": "print-help && INIT_SEM=/tmp/initialized.sem; PACKAGE_FILE=${current.project.path}/package.json; cd ${current.project.path} && wait_for_db && if ! app_present; then log \"Creating express application\" && cp -r /dist/samples . && PROJECT_TEMP_DIR=$(mktemp -d) && sudo HOME=/root nami execute express generateProject --projectDir \"$PROJECT_TEMP_DIR\" app && mv \"$PROJECT_TEMP_DIR/app/*\" ${current.project.path} && add_dockerfile && install_packages && log \"Initialization finished\"; fi; migrate_db; npm start",
+
         "attributes": {
           "previewUrl": "http://${server.port.3000}"
         }
