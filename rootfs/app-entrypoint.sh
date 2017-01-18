@@ -19,7 +19,7 @@ function initialize {
     fi
 }
 
-if [ "$1" == "nami" ] && [ "$2" == "start" -o "$2" == "run" ]; then
+if [ "$1" == npm ] && [ "$2" == "start" -o "$2" == "run" ]; then
   initialize express
   wait_for_db
 
@@ -51,6 +51,8 @@ if [ "$1" == "nami" ] && [ "$2" == "start" -o "$2" == "run" ]; then
   migrate_db
 
   touch $INIT_SEM
+elif [ "$1" == tail ] && [ "$2" == "-f"] && [ "$3" == "/dev/null" ]; then
+  initialize express
 fi
 
 exec /entrypoint.sh "$@"
