@@ -8,11 +8,12 @@ ENV BITNAMI_APP_NAME=express-unify \
 
 # System packages required
 RUN install_packages libc6 libssl1.0.0 libncurses5 libtinfo5 zlib1g libbz2-1.0 libreadline6 libstdc++6 libgcc1 ghostscript imagemagick libmysqlclient18
+
+# Additional modules required
+RUN bitnami-pkg install node-7.4.0-0 --checksum 25efb29dd2c4e4f459197401843e91185fb2e1d9a60d0b58ad350bf1254f8b15
 ENV PATH=/opt/bitnami/node/bin:/opt/bitnami/python/bin:$PATH \
     NODE_PATH=/opt/bitnami/node/lib/node_modules
 
-# Additional modules required
-RUN bitnami-pkg install node-6.9.4-0 --checksum aa0fe4923ece714285ed4ed63877e769b2bcf80c16d274d50db4d601541b64f4
 RUN bitnami-pkg install express-generator-4.14.0-0 --checksum 7214212e41dab239184bf3cc75be3b73e4b4a07146e8274b933f0fa141ff12a5
 RUN npm install -g bower@1.8.0 sequelize-cli
 
@@ -23,15 +24,13 @@ RUN bitnami-pkg unpack express-4.14.0-2 --checksum bcf8c9ea99839527de9ac954f40eb
 ENV BITNAMI_APP_NAME=express-unify
 ENV BITNAMI_IMAGE_VERSION=4.14.0-r17
 
-COPY rootfs /
+COPY rootfs/ /
 
 # The extra files that we bundle should use the Bitnami User
 # so the entrypoint does not have any permission issues
 RUN chown -R bitnami: /dist
 
-VOLUME ["/app"]
-
-#USER bitnami
+USER bitnami
 
 WORKDIR /app
 EXPOSE 3000
