@@ -74,7 +74,7 @@
       {
         "name": "1. Create and run project",
         "type": "custom",
-        "commandLine": "print-help && cd ${current.project.path} && nami initialize express && cp -r /dist/samples . && nami execute express generateProject --projectDir /projects --force $(basename ${current.project.path}) && npm install mongodb@2.1.18 --save && npm install && counter=0; until nc -z mongodb 27017; do counter=$((counter+1)); if [ $counter == 10 ]; then echo \"Error: Couldn't connect to MongoDB.\"; exit 1; fi; echo \"Trying to connect to MongoDB at mongodb. Attempt $counter.\"; sleep 5; done; echo \"Connected to MongoDB database. Starting application server.\" && npm start",
+        "commandLine": "print-help && cd ${current.project.path} && sudo HOME=/root nami initialize express; cp -r /dist/samples . && sudo HOME=/root nami execute express generateProject --projectDir /projects --force $(basename ${current.project.path}) && npm install mongodb@2.1.18 --save && npm install && counter=0; until nc -z mongodb 27017; do counter=$((counter+1)); if [ $counter == 10 ]; then echo \"Error: Couldn't connect to MongoDB.\"; exit 1; fi; echo \"Trying to connect to MongoDB at mongodb. Attempt $counter.\"; sleep 5; done; echo \"Connected to MongoDB database. Starting application server.\" && npm start",
         "attributes": {
           "previewUrl": "http://${server.port.3000}"
         }
