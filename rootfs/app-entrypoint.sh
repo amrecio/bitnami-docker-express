@@ -8,14 +8,14 @@ PACKAGE_FILE=/app/package.json
 
 function initialize {
     # Package can be "installed" or "unpacked"
-    status=`nami inspect $1`
+    status=`sudo HOME=/root nami inspect $1`
     if [[ "$status" == *'"lifecycle": "unpacked"'* ]]; then
         # Clean up inputs
         inputs=""
         if [[ -f /$1-inputs.json ]]; then
             inputs=--inputs-file=/$1-inputs.json
         fi
-        nami initialize $1 $inputs
+        sudo HOME=/root nami initialize $1 $inputs
     fi
 }
 
@@ -51,7 +51,8 @@ if [ "$1" == npm ] && [ "$2" == "start" -o "$2" == "run" ]; then
   migrate_db
 
   touch $INIT_SEM
-elif [ "$1" == tail ] && [ "$2" == "-f"] && [ "$3" == "/dev/null" ]; then
+elif [ "$1" == tail ] && [ "$2" == "-f" ] && [ "$3" == "/dev/null" ]; then
+  # Eclipse Che
   initialize express
 fi
 

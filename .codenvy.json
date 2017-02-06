@@ -74,7 +74,7 @@
       {
         "name": "1. Create and run project",
         "type": "custom",
-        "commandLine": "print-help && INIT_SEM=/tmp/initialized.sem; PACKAGE_FILE=${current.project.path}/package.json; cd ${current.project.path} && wait_for_db && if ! app_present; then log \"Creating express application\" && cp -r /dist/samples . && PROJECT_TEMP_DIR=$(mktemp -d) && sudo HOME=/root nami execute express generateProject --projectDir \"$PROJECT_TEMP_DIR\" app && mv \"$PROJECT_TEMP_DIR/app/*\" ${current.project.path} && add_dockerfile && install_packages && log \"Initialization finished\"; fi; migrate_db; npm start",
+        "commandLine": "print-help && INIT_SEM=/tmp/initialized.sem; PACKAGE_FILE=${current.project.path}/package.json; source /functions.sh && cd ${current.project.path} && wait_for_db && if ! app_present; then log \"Creating express application\" && cp -r /dist/samples . && PROJECT_TEMP_DIR=$(mktemp -d) && sudo HOME=/root nami execute express generateProject --projectDir \"$PROJECT_TEMP_DIR\" app && mv \"$PROJECT_TEMP_DIR/app/*\" ${current.project.path} && add_dockerfile && install_packages && log \"Initialization finished\"; fi; migrate_db; npm start",
 
         "attributes": {
           "previewUrl": "http://${server.port.3000}"
